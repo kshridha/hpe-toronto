@@ -1,0 +1,17 @@
+#Copyright (C) 2015 Hewlett Packard Enterprise Development LP
+
+[Unit]
+Description=OpenSwitch mcast-mtm Module Daemon
+After=ovsdb-server.service ops-init.service
+
+[Service]
+Type=forking
+CPUSchedulingPolicy=rr
+CPUSchedulingPriority=3
+ExecStartPre=/bin/rm -f /var/run/openvswitch/mtmd.pid
+ExecStart=/sbin/ip netns exec swns /usr/bin/mtmd --detach --pidfile -vSYSLOG:INFO
+PIDFile=/var/run/openvswitch/mtmd.pid
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

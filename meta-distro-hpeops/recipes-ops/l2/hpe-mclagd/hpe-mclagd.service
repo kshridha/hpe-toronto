@@ -1,0 +1,15 @@
+# Copyright (C) 2016 Hewlett Packard Enterprise Development LP
+
+[Unit]
+Description=OpenSwitch mclagd Module Daemon
+After=ovsdb-server.service ops-init.service
+
+[Service]
+Type=forking
+ExecStartPre=/bin/rm -f /var/run/openvswitch/hpe-mclagd.pid
+ExecStart=/sbin/ip netns exec swns /usr/bin/hpe-mclagd --detach --pidfile -vSYSLOG:INFO
+PIDFile=/var/run/openvswitch/hpe-mclagd.pid
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
