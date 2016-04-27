@@ -1,0 +1,11 @@
+The aim is to create a new distro named toronto. So, we will have the command 'make configure toronto as5712'. 
+Following steps needs to be done to achieve this: 
+
+1. Add a directory (name toronto) under http://git-nos.rose.rdlabs.hpecorp.net/cgit/hpe/hpe-build/tree/config. 
+
+2. The master.conf file under config/toronto should specify which repos needs to be pulled when make configure is excecuted. 
+
+3. A new repo needs to be created for toronto. The link to repo can be given in repos.conf file.
+
+
+    
